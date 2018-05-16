@@ -1,5 +1,4 @@
 const log = console.log;
-<<<<<<< HEAD
 (function promiseTest(resolve,reject){
     let t = Math.floor(Math.random()*3);
     log(t);
@@ -21,7 +20,6 @@ const promise = new Promise((resolve,reject) =>{
     }
 })
 promise();
-=======
 // (function promiseTest(resolve,reject){
 //     var t = Math.floor(Math.random()*3);
 //     log(t);
@@ -73,4 +71,3 @@ log('promise3');
 /*promise1
 promise3
 promise2*/
->>>>>>> dev
