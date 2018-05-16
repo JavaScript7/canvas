@@ -16,3 +16,7 @@ var r = list.filter((e,i)=>{
     return list.indexOf(e) === i;//如果要检索的字符串值没有出现，则该方法返回 -1。
 })
 log(r);
+
+let arrs = new Array(1,2,3);
+arrs[100]=100;
+log(arrs.length);//101
