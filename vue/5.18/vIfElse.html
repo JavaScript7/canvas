@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p v-if="score>=85">输入成绩对应的等级是：{{dengji[0]}}</p>
+        <p v-else-if="score>=60">输入成绩对应的等级是：{{dengji[1]}}</p>
+        <p v-else="60>score">输入成绩对应的等级是：{{dengji[2]}}</p>
+        <input type="text" v-model="score">
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            score: 90,
+            dengji: ['优秀','良好','不及格']
+        }
+    })
+</script>
+</html>
