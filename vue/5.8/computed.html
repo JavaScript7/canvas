@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="n in numbers">{{n}}</li><br/>
+            <li v-for="n in threeNum">{{n}}</li><br/>
+            <li v-for="n in twoNum(numbers)">{{n}}</li>
+            <span v-for="n in 5">{{n}}</span>
+        </ul>
+    </div>
+</body>
+<script>
+    var list = {a:1,b:2,c:3};
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            numbers: [1,2,3,4,5,6,7,8,9]
+        },
+        computed: {
+            threeNum: function(){
+                return this.numbers.filter(function(e){
+                    return e%3===0;
+                })
+            }
+        },
+        methods: {
+            twoNum: function(numbers){
+                return this.numbers.filter(function(e){
+                    return e%2===0;
+                })
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .tans{
+            width: 0;
+            height: 0;
+            border: 20px solid;
+            border-color: transparent transparent transparent orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="show=!show">登录</button>
+        <transition name="slide-fade">
+            <div class="login" v-if="show">
+                <h3>登录</h3>
+                <span>123</span>
+            </div>
+        </transition>
+        <div class="tans"></div>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            show: true
+        }
+    })
+</script>
+</html>

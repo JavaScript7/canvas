@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model="newTodoText" @keyup.enter="addNewTodo" placeholder="请添加todo回车进行添加!">
+        <ul>
+            <li is="todo-item" v-for="(item,index) in todos" :key="item.id" :test="item.test" @remove="todos.splice(index,1)"></li>
+        </ul>
+    </div>
+</body>
+<script>
+    Vue.component('todo-item',{//全局组件
+        props: ['test'],
+        template: '\
+            <li>\
+            {{test}}\
+            <button @click="$emit(\'remove\')">X</button>\
+        </li>\
+        '
+    })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            newTodoText: '',
+            todos: [
+                {id:1,test: "选项1"},
+                {id:2,test: "选项1"},
+                {id:3,test: "选项1"}
+            ],
+            nextTodoId: 4
+        },
+        methods: {
+            addNewTodo: function(){
+                this.todos.push({id:this.nextTodoId,test:this.newTodoText});
+                this.newTodoText = '';
+            }
+        }
+    })
+</script>
+</html>

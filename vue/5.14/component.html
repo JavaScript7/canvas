@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        #app input{
+            /* width: 190px; */
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+        <input type="text" :style="inputWidth">
+        <input type="text" :style="{color: actColor,fontSize: fontSize+'px'}" @keypress.enter="name">
+    </div>
+</body>
+<script>
+    const log = console.log.bind(console);//vue中正常console.log
+    let childs = {
+        template: '<div>childNode</div>'
+    }
+    let parents = {
+        template: `
+        <div class="parent">
+            <child></child>
+            <child></child>
+        </div>
+        `,
+        components: {
+            'child': childs
+        }
+    }
+    let vm = new Vue({
+        el: "#app",
+        components: {
+            'parent': parents
+        },
+        data: {
+            inputWidth: {
+                width: '200px'
+            },
+            actColor: 'red',
+            fontSize: '16px'
+        },
+        methods: {
+            name () {
+                //log(45)
+                this.$emit('name')
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,13 @@
+<el-button @click="batchRemarkInput" title="备注" :size="inputSize" v-show="!batchRemarkAnimation">备注</el-button>
+data:{
+    // 备注动画开关
+      batchRemarkAnimation: false,
+}
+methods:{
+    // 备注
+    batchRemarkInput () {
+      let p = this.originData
+      let msg = '请输入备注'
+      prompt.inputBox.bind(this)(msg, this.batchRemark)
+    },
+}

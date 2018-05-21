@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button-counter></button-counter>
+        <label v-for="item in options"><input type="checkbox">{{item.value}}</label>
+    </div>
+</body>
+<script>
+    Vue.component('button-counter',{
+        data: function(){
+            return {
+                count: 0
+            }
+        },
+        template: '<button @click="count++">{{count}}</button>'
+    })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            selected: "",
+            options: [
+                {text:1,value:"北京",val:12},
+                {text:2,value:"福州",val:13},
+                {text:3,value:"厦门",val:14}
+            ],
+            msg: "",
+            age: 12
+        }
+    })
+</script>
+</html>

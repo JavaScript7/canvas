@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="greet">greet</button>
+        <button @click="say('hi')">say hi</button>
+        <button @click.stop="say">停止点击事件冒泡</button>
+        <form @submit.prevent="onSubmit">
+            <button>提交事件后不再重新载入页面</button>
+        </form>
+        <form @submit.prevent>
+            <button>提交事件后不再重新载入页面</button>
+        </form>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            name: 'js'
+        },
+        methods: {
+            greet: function(event){
+                console.log(`he is ${this.name}.`);
+                if(event){
+                    console.log(event.target.tagName);
+                }
+                vm.$emit('greet');
+            },
+            say: function(message){
+                console.log(message);
+            },
+            onSubmit: function(){
+                console.log(4);
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <select v-model="selected">
+            <option v-for="option in options" v-bind:text="option.text" :val="option.val">{{option.value}}</option>
+        </select>
+        <input type="text" v-model.lazy="msg"><span>输入框失焦时：{{msg}}</span>
+        <input type="number" v-model.number="age">
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            selected: "",
+            options: [
+                {text:1,value:"北京",val:12},
+                {text:2,value:"福州",val:13},
+                {text:3,value:"厦门",val:14}
+            ],
+            msg: "",
+            age: 12
+        }
+    })
+</script>
+</html>
