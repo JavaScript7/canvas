@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message" placeholder="请输入内容">
+        <p>{{message}}</p>
+        <input type="checkbox" v-model="checked">
+        <label for="checkbox">{{checked}}</label><br/>
+        <span>全选</span>
+        <input type="checkbox" v-model="checkeds"><br/>        
+        <input type="checkbox" v-model="checkeds"><label>篮球</label>
+        <input type="checkbox" v-model="checkeds"><label>足球</label>
+        <input type="checkbox" v-model="checkeds"><label>跑步</label>
+        <input type="checkbox" v-model="radio"><label>游泳</label>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            message: 'input',
+            checked: false,
+            checkeds: false,
+            radio: true,
+            label: [
+                {id:1,text:"篮球"},
+                {id:2,text:"足球"},
+                {id:3,text:"跑步"},
+                {id:4,text:"游泳"}
+            ]
+        },
+        methods: {
+            greet: function(event){
+                console.log(`he is ${this.name}.`);
+                if(event){
+                    console.log(event.target.tagName);
+                }
+                vm.$emit('greet');
+            }
+        }
+    })
+</script>
+</html>

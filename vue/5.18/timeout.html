@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="timeShow"></div>
+</body>
+<script>
+    let ts = document.querySelector("#timeShow");
+    function timeShow(){
+        let date = new Date();
+        let y = date.getFullYear();
+        let m = date.getMonth()+1;
+        let day = date.getDay();//5
+        let dat = date.getDate();//18
+        let h = date.getHours();
+        let min = date.getMinutes();
+        let s = date.getSeconds();
+        let weeks = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+        function check(i){
+            if(i<10){
+                i = '0'+i;
+            }
+            return i;
+        }
+        ts.innerHTML = `${y}-${check(m)}-${check(dat)} ${weeks[day]} ${check(h)}:${check(min)}:${check(s)}`;
+        if(h === 18 && min === 00 && s === 00){
+            alert('记得打卡！');
+        }
+    }
+    setInterval(timeShow,996);
+</script>
+</html>

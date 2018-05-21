@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" ref="input1" v-model="input1">
+        <button @click="add">添加</button><br>
+        <input type="text" v-model="inputVal" @keypress.enter="enter">
+        <p>{{mes}}</p>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        props: ['mes'],
+        data: {
+            input1: 42,
+            inputVal: ''
+        },
+        methods: {
+            add () {
+                this.$refs.input1.value = '22';//document.getElementsByTagName('input')[0].value;减少获取DOM节点的消耗
+            },
+            enter (val) {
+                console.log(this.inputVal+':'+val)
+                this.$emit('enter',this.inputVal)
+            }
+        }
+    })
+</script>
+</html>

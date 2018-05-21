@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div :style="styleObject">红色16px字体</div>
+        <div v-if="Math.random()>.5">显示</div>
+        <div v-else>隐藏</div>
+    </div>
+</body>
+<script>
+    const log = console.log;
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            styleObject: {
+                color: 'red',
+                fontSize: '16px'
+            }
+        }
+    })
+    log(Math.random()>0.5);//随机true或者false
+</script>
+</html>

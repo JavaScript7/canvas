@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in lists">{{index}}.{{item.test}}</li>
+        </ul>
+        <ol>
+            <li v-for="(value,key,index) of object">{{index}}. {{key}}:{{value}}</li>
+        </ol>
+        <ul>
+            <li v-for="item in items" @click="show">{{item}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            lists: [
+                {test: "选项1"},
+                {test: "选项1"},
+                {test: "选项1"}
+            ],
+            object: {
+                name: 'lin',
+                age: '30',
+                address: '北京'
+            },
+            items: ['a','b','c']
+        },
+        methods: {
+            show: function(){
+                vm.$set(vm.items,1,'x');//改变第2个items的值（b变成x）=>vm.items[1] = 'x';
+                console.log(vm.items.splice(3));//=>
+                vm.$set(vm.object,'people',27);//object添加一个属性和属性值=>push
+                this.$emit('show');//触发事件       //$on(eventName)监听事件
+            }
+        }
+    })
+</script>
+</html>

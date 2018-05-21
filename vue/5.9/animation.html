@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        button{
+            cursor: pointer;
+        }
+        .slide-fade-enter-active{
+            transition: all .3s ease;
+        }
+        .slide-fade-leave-active{
+            transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .slide-fade-enter,.slide-fade-leave-to{
+            transform: translateX(-460px);
+            opacity: 0;
+        }
+        .login{
+            width: 240px;
+            height: 460px;
+            border: 1px solid black;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+        }
+        h3{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="show=!show">登录</button>
+        <transition name="slide-fade">
+            <div class="login" v-if="show">
+                <h3>登录</h3>
+                <span>123</span>
+            </div>
+        </transition>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            show: true
+        }
+    })
+</script>
+</html>

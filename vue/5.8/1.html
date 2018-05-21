@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <span v-if="seen" @click="show()">显示隐藏</span>
+        <form v-on:submit.prevent="onSubmit()"></form><!-- .prevent 修饰符告诉 v-on 指令，在触发事件后调用 event.preventDefault() -->
+        <span>{{name.firstName}}</span>
+        <span v-text="name.lastName"></span>
+        <p v-if="seen">{{name.firstName}}</p>
+        <h3>{{msg}}</h3>
+        <span v-if="!load">导入</span>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        props: {
+            msg: {
+                type: String,
+                default: '默认值'
+            }
+        },
+        data: {
+            seen: true,
+            name: {
+                firstName: 'lin',
+                lastName: 'iop'
+            },
+            load: false
+        },
+        methods: {
+            show: function(){
+                // console.log(this.seen);//true
+                // console.log(vm.seen);//true
+                this.seen = !this.seen;
+            }
+        }
+    })
+</script>
+</html>
+<!-- 
+简写：
+v-bind:href="url"  ==>  :href="url"
+v-on:click="show()" ==> @click="show()"
+ -->
