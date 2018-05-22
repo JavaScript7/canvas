@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const feedback = {
     400: '请求参数错误',
     401: '登录已过期，请重新登录',
@@ -11,7 +10,6 @@ const feedback = {
     504: '504 服务器异常'
 }
 console.log(feedback[400]);//请求参数错误
-=======
 //集合变数组Array.of()
 console.log(Array.of(1,2,3,4));//[ 1, 2, 3, 4 ]
 console.log(Array.of('j','k','l'));
@@ -89,4 +87,3 @@ console.log(obj);//{ name: '张三', age: 12 }
     let obj = {};
     demo.call(obj);
 }
->>>>>>> dev
