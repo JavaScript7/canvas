@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #head{
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="head"></div>
+</body>
+<script>
+    let head = document.querySelector('#head');
+    let headHeight = parseInt(document.defaultView.getComputedStyle(head,null).height);//40
+    //IE9以下不支持defaultView
+    let ht = document.defaultView.getComputedStyle(head,null).width;//40px
+    {
+        let arr = [1,6,3,2];
+        let total1 = arr.reduce((a,b)=>{
+            return a+b;
+        })
+        console.log(total1);//12
+        
+        let total2 = arr.reduce((a,b)=>{
+            a.sum = a.sum + b;
+            return a;
+        },{sum: 0})//转换对象模式
+        console.log(total2);//{sum:12}
+
+        let result = [
+            {
+                subject: 'math',
+                score: 88
+            },{
+                subject: 'English',
+                score: 78
+            },{
+                subject: 'Chinese',
+                score: 90
+            }
+        ];
+        let total3 = result.reduce((a,b)=>{
+            return a+b.score;
+        },-10)//-10是初始值
+        console.log(total3);//256-10
+    }
+</script>
+</html>
