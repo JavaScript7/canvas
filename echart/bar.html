@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="echarts.js"></script>
+    <title>Document</title>
+    <style>
+        #main{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+        .pie{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <div class="pie"></div>
+</body>
+<script>
+    let myChart = echarts.init(document.getElementById('main'));
+    let option = {
+        title: {
+            text: '图'
+        },
+        tooltip: {},
+        legend: {
+            data: ['销量']
+        },
+        xAxis: {
+            data: ['衬衫','羊毛衫','裤子','短袖','运动鞋']
+        },
+        yAxis: {
+            
+        },
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5,2,3,7,9]
+        }]
+    };
+    myChart.setOption(option);
+    let pie = echarts.init(document.getElementsByClassName('pie')[0]).setOption({
+        series: {
+            name: '饼图',
+            type: 'pie',
+            radius: '55%',
+            data: [
+                {name: 'A',value: '16'},
+                {name: 'B',value: '16'},
+                {name: 'C',value: '4'}
+            ]
+        }
+    },'dark')
+</script>
+</html>
