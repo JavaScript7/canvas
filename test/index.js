@@ -87,3 +87,33 @@ console.log(obj);//{ name: '张三', age: 12 }
     let obj = {};
     demo.call(obj);
 }
+//三角形
+{
+    // for(var i=0; i<6; i++){
+    //     for(var j=0; j<5-i; j++){
+    //         console.log(' ');
+    //     }
+    //     for(var j=0; j<i; j++){
+    //         console.log('*');
+    //     }
+    //     console.log();
+    // }
+}
+//this
+{
+    let num = 10;
+    let obj = {
+        num:8,
+        inner: {
+            num: 6,
+            print: function () {
+                console.log("num: "+num+" , this.num: "+this.num);
+            }
+        }
+    }
+    num = 888;
+    obj.inner.print();//num: 888 , this.num: 6
+    var fn = obj.inner.print;
+    fn();//num: 888 , this.num: undefined 
+    (obj.inner.print)();//num: 888 , this.num: 6
+}
