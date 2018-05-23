@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://gw.alipayobjects.com/os/antv/assets/g2/3.0.12/g2.min.js"></script>
+    <title>Document</title>
+    <style>
+        .box{
+            width: 600px;
+            height: 400px; 
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    const chart = new G2.Chart({
+        container: document.getElementsByClassName('box')[0],
+        width: 600,
+        height: 400
+        // padding: [20,10,20,10]
+    });
+    const data = [
+        {genre:'衣服',sold:10},
+        {genre:'裤子',sold:4},
+        {genre:'裙子',sold:6},
+        {genre:'衬衫',sold:7}
+    ];
+    chart.source(data,{
+        // pv: {
+        //     type: 'log',
+        //     base: 4
+        // },
+        score: {
+            min: 4,
+            max: 20
+        }
+    });
+    chart.scale({
+        genre: {
+            alias: '服装'
+        },
+        solid: {
+            alias: '销售量'
+        }
+    })
+    chart.interval().position('genre*sold').color('genre');//point
+    chart.render();
+</script>
+</html>

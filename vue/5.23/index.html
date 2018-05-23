@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in todos" :key="item.id" @click="getInfo(index)">{{item.test}}</li>
+        </ul>
+        <input type="text" v-model.lazy="message">
+        <p>{{message}}</p>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            todos: [
+                {id:1,test: "选项1"},
+                {id:2,test: "选项2"},
+                {id:3,test: "选项3"}
+            ],
+            message: ''
+        },
+        methods: {
+            getInfo: function(data){
+                console.log(this.todos[data].test);
+            }
+        }
+    })
+</script>
+</html>

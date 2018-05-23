@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="echarts.js"></script>
+    <title>Document</title>
+    <style>
+        #main{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+</body>
+<script>
+    let myChart = echarts.init(document.getElementById('main'));
+    let dataBar = {
+        'data': [1,4,2,4,3],
+        'name': ['衬衫','羊毛衫','裤子','短袖','运动鞋']
+    };
+    dataBar.data[3] = 5;
+    console.log(dataBar.data[3]);
+    let option = {
+        title: {
+            text: '图表一：'
+        },
+        tooltip: {},
+        legend: {
+            data: ['销量']
+        },
+        xAxis: {
+            // data: ['衬衫','羊毛衫','裤子','短袖','运动鞋']
+            data: dataBar.name
+        },
+        yAxis: {
+            
+        },
+        series: [{
+            name: '销量',
+            type: 'bar',
+            // data: [1,4,2,4,3]
+            data: dataBar.data
+        }]
+    };
+    myChart.setOption(option);
+    console.log(option.series[0].data[0]);//1
+</script>
+</html>

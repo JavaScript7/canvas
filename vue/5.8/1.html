@@ -16,6 +16,13 @@
         <p v-if="seen">{{name.firstName}}</p>
         <h3>{{msg}}</h3>
         <span v-if="!load">导入</span>
+        {{'哈哈'}}
+        {{哈哈}}
+        <div>
+            <ul>
+                <li v-for="item in ages">{{item}}</li>
+            </ul>
+        </div>
     </div>
 </body>
 <script>
@@ -33,7 +40,9 @@
                 firstName: 'lin',
                 lastName: 'iop'
             },
-            load: false
+            load: false,
+            '哈哈':'哈哈',
+            ages: [12,45,87,65]
         },
         methods: {
             show: function(){
