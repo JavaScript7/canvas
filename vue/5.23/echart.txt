@@ -1,0 +1,73 @@
+Vue中使用echart：
+1.安装依赖：
+    npm install echarts -S  或者  npm install echarts --save
+
+2.全局引入：
+    在main.js：
+    import echarts from 'echarts'
+    Vue.prototype.$echarts = echarts  或者  Vue.use(echarts)
+
+3.全局引入会将所有的echarts图表打包，导致体积过大，所以我觉得最好还是按需引入。
+    let echarts = require('echarts/lib/echarts')
+    // 引入柱状图组件(要引入的图表)
+    require('echarts/lib/chart/bar')
+    // 引入提示框和title组件
+    require('echarts/lib/component/tooltip')
+    require('echarts/lib/component/title')  
+
+这里之所以使用 require 而不是 import，
+是因为 require 可以直接从 node_modules 中查找，而 import 必须把路径写全
+
+4.实际代码：
+<template>
+ <div class="echarts">
+   <div id="myEchart" :style="{width: '600px', height: '400px'}"></div>
+ </div>
+</template>
+<script>
+// var echarts = require('echarts')
+// import echarts from 'echarts'
+let echarts = require('echarts/lib/echarts')
+// 引入柱状图组件
+require('echarts/lib/chart/bar')
+// 引入提示框和title组件
+require('echarts/lib/component/tooltip')
+require('echarts/lib/component/title')
+export default {
+  name: 'echart',
+  data () {
+    return {
+      option: {
+        title: {
+          text: '在vue中使用echart'
+        },
+        tooltip: {},
+        legend: {
+          data: ['销量']
+        },
+        xAxis: {
+          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+        },
+        yAxis: {
+        },
+        series: [
+          {
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 4, 13, 25, 10]
+          }
+        ]
+      }
+    }
+  },
+  mounted () {
+    this.drawEchart()
+  },
+  methods: {
+    drawEchart () {
+      let myEchart = echarts.init(document.getElementById('myEchart'))
+      myEchart.setOption(this.option)
+    }
+  }
+}
+</script>
