@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <label>name:<input type="text" v-model="person.name"></label>
+        <label>age:<input type="text" v-model="person.age"></label>
+        <label>
+            <select>
+                <option value="01">男</option>
+                <option value="02">女</option>
+            </select>
+        </label>
+        <tabel>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in datas" :key="index">
+                    <td>{{item.name}}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.sex}}</td>
+                    <td>
+                        <button @click="delData(index)">删除</button>
+                        <button @click="edit()">编辑</button>
+                    </td>
+                </tr>
+            </tbody>
+        </tabel>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            person: {
+                name: '',
+                age: ''
+            },
+            datas: [
+                {name:'张三', age:'12', sex:'男'},
+                {name:'李四', age:'82', sex:'女'},
+                {name:'王五', age:'56', sex:'男'},
+                {name:'赵六', age:'41', sex:'男'}
+            ]
+        },
+        methods: {
+            delData: function(index){
+                this.datas.splice(index,1);
+            }
+        }
+    })
+</script>
+</html>
