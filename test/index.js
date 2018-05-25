@@ -158,3 +158,34 @@ console.log(obj);//{ name: '张三', age: 12 }
     let max1 = Math.max.apply(null,a);//5
     let max2 = Math.max.call(null,4,5,3);//5
 }
+{
+    let form = {
+        user: null,
+        password: null
+    }
+    console.log({...form})//{ user: null, password: null }
+}
+{//获取一个值在数组的索引值
+    let jkl = ['一','二','三','四','五','六'];
+    function getIndex(val){
+        return jkl.indexOf(val);
+    }
+    console.log(getIndex('四'));
+}
+{//判断数组中是否存在某值
+    let jkl = ['一','二','三','四','五','六'];
+    function arrHasVal(val,arr){
+        let out = false;
+        for(let i in arr){
+            if(val === arr[i]){
+                out = true;
+                return out;
+            }
+        }
+        return out;
+    }
+    console.log(arrHasVal('吧',jkl));
+}
+{
+    
+}

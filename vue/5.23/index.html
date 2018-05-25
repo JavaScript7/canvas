@@ -14,11 +14,16 @@
         </ul>
         <input type="text" v-model.lazy="message">
         <p>{{message}}</p>
+        <label>{{label}}
+            <input type="text" v-bind:value="value" @input="$emit('input', $event.target.value)">
+            {{value}}
+        </label>
     </div>
 </body>
 <script>
     var vm = new Vue({
         el: "#app",
+        props: ['label','value'],
         data: {
             todos: [
                 {id:1,test: "选项1"},
