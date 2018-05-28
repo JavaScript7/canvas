@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+    <style>
+        p{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>路由</h3>
+        <p>
+            <router-link to="/foo">go to foo</router-link>
+            <router-link to="/far">go to far</router-link>
+        </p>
+        <button @click="next">前进</button>
+        <button @click="prevent">后退</button>
+        <router-view></router-view>
+    </div>
+</body>
+<script>
+    const routes = [{
+            path: '/foo', 
+            component: {
+                template: '<div>foo</div>'
+            }
+        },{
+            path: '/far', 
+            component: {
+                template: '<div>far</div>'
+            }
+        }
+    ]
+    const router = new VueRouter({
+        routes: routes  //<=>routes
+    })
+    const vm = new Vue({
+        router,
+        methods: {
+            next: function(){
+                this.$router.go(1);//history.forward()  
+            },
+            prevent: function(){
+                this.$router.go(-1);//history.back()
+            }
+        }
+    }).$mount('#app')
+</script>
+</html>
+<!--
+声明式：
+<router-link :to="...">
+编程式：
+router.push(...)
+
+router.push({path:'login',query:{plan:'id'}})  => /login?plan=id
+router.push({name:'login',params:{123}}) => /login/123
+router.push({path:`/login/${123}`}) => /login/123   
+-->
