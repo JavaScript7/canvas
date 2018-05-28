@@ -1,13 +1,5 @@
 <template>
- <div class="login">
-   <div class="loginForm">
-     <img src="" alt="">
-     <h3>登录框</h3>
-     <input type="text" placeholder="请输入用户名...">
-     <input type="text" placeholder="请输入密码...">
-     <button @click="getDataLogin()">登录</button>
-   </div>
- </div>
+ <div class="login"></div>
 </template>
 
 <script>
