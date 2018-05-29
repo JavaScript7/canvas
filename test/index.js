@@ -187,5 +187,20 @@ console.log(obj);//{ name: '张三', age: 12 }
     console.log(arrHasVal('吧',jkl));
 }
 {
-    
+    let saleName = 20;
+    let typeName = 10;
+    let saleNames = saleName? `&saleName=${saleName}` : '';
+    let typeNames = typeName? `&typeName=${typeName}` : '';
+    let sumNames = saleNames + typeNames;
+    //console.log(saleNames);//&saleName=20
+    //console.log(sumNames);//&saleName=20&typeName=10
+}
+{
+    let range = ['2018-05-01','2018-12-23','2018-05-09'];
+    let dataRan = range[2].toString();//2018-05-09  转变成字符串
+    let dataRang = dataRan.slice(0,-9);//2  选取开头字符
+    let dataRange = encodeURIComponent(dataRang);
+    let datar = 'qwertyuiopasd';
+    //console.log(datar.slice(0,-4));//qwertyuio 从0开始选取到-4（负数表示从后面开始算，例如最后一个是-1）结束
+    //console.log(dataRange);//2
 }
