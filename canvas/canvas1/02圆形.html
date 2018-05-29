@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="400" height="400" style="background-color:#666"></canvas>
+	</body>
+	<script>
+		//得到对应的canvas和上下文，重点都是使用context来处理
+		var ctx =document.getElementById("cvs").getContext("2d");
+		
+		ctx.arc(200,200,100,0,Math.PI*1.5,false);		
+		ctx.closePath();
+		ctx.stroke();
+		
+	</script>
+</html>

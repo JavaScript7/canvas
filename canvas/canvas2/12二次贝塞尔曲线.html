@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="400" height="400" style="background-color:#666"></canvas>
+ 
+	<script>
+		var ctx =document.getElementById("cvs").getContext("2d");
+		//ctx.beginPath();
+		ctx.moveTo(50,50);
+		ctx.quadraticCurveTo(200,50,150,70);
+		ctx.stroke();
+		</script>
+	</body>
+</html>

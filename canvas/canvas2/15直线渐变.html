@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<canvas id="cvs" width="400" height="400" style="background-color:#666"></canvas>
+	</body>
+	<script>
+		var ctx =document.getElementById("cvs").getContext("2d");
+		ctx.moveTo(10,10);//
+		ctx.lineTo(200,10);
+	    var grd = ctx.createLinearGradient(10,10,200,10);
+	    grd.addColorStop(0,"black");
+	    grd.addColorStop(0.5,"green")
+	    grd.addColorStop(1,"red");
+	    ctx.strokeStyle =grd;
+		ctx.stroke();
+	</script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="400" height="400" style="background-color:#666"></canvas>
+	</body>
+	<script>
+		//得到对应的canvas和上下文，重点都是使用context来处理
+		var ctx =document.getElementById("cvs").getContext("2d");
+		//绘制矩形
+		//只描绘出边框还是填充,描绘stroke,填充fill
+		//
+		ctx.fillStyle="chartreuse"
+		ctx.fillRect(20,20,200,100);
+		//ctx.strokeStyle = "red";
+		//ctx.strokeRect(20,20,200,100);
+	</script>
+</html>

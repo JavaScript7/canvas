@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="400" height="400" style="background-color:#666"></canvas>
+	</body>
+	<script>
+		var ctx =document.getElementById("cvs").getContext("2d");
+		//ctx.lineWidth = 10;
+		ctx.moveTo(20,20);
+		ctx.lineTo(20,200);
+		ctx.lineCap="square";//butt,默认值，没有添加任何线帽
+		ctx.stroke();
+	</script>
+</html>

@@ -1,0 +1,31 @@
+<canvas id="djx" style="border:1px solid;" width="200" height="200"></canvas><!--框-->
+
+var canvas=document.getElementByld("djx");
+  var context=canvas.getContext("2d");
+  context.beginPath();
+  context.moveTo(70,140);
+  context.lineTo(140,70);''
+  context.stroke();
+
+ window.addEventListener("load",drawDiagonal,true);
+  var canvas=document.getElementByld(id);
+  var context=canvas.getContext("2d");
+  context.fillStyle="green";
+  context.strokeStyle="red";
+  context.lineWidth="1";
+  context.fillRect(x,y,width,height);
+  context.strokeRect(x,y,width,height);
+
+var canvas=document.getElementByld("canvas");
+var context = canvas.getContext('2d');
+context.beginPath(); 创建路径
+context.closePath(); 关闭路径
+context.lineWidth  线的宽度
+context.strokeStyle  边框颜色
+context.fillStyle  填充颜色
+context.stroke()  开始绘制边框
+context.fill()  开始填充颜色块
+
+context.moveTo(x,y)
+context.lineTo(x,y)
+

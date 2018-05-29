@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		 <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <script type="text/javascript">
+        window.onload = function(){
+            var drawing = document.getElementById("drawing");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var context = drawing.getContext("2d");
+                
+                //start the path
+                context.beginPath();
+                
+                //draw outer circle
+                context.arc(100, 100, 99, 0, 2 * Math.PI, false);
+                
+                //draw inner circle
+                //context.moveTo(194, 100);
+                context.arc(100, 100, 94, 0, 2 * Math.PI, false);
+                //这个画时针
+                context.translate(100,100)
+                context.moveTo(0,0);
+                context.lineTo(0,-65);
+                
+                
+                //这里添加文字
+                //练习：给Clock加上12，3，6，9
+                context.font = "bold 14px Arial";
+                context.textAlign = "center";
+                context.textBaseline = "middle";
+                context.fillText("5",100,15)
+                context.stroke()
+                context.fillText("12",0,-80)
+                
+                context.fillText("3",80,0)
+                context.fillText("6",0,80)
+                context.fillText("9",-80,0)
+               
+                context.rotate(Math.PI/2)
+                context.moveTo(0,0);
+                context.lineTo(0,-70);
+                context.stroke();
+                //
+               
+                
+                
+            }                
+        };
+
+    </script>
+	</body>
+</html>

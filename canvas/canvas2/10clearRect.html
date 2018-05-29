@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="400" height="400" style="background-color:#666"></canvas>
+	</body>
+	<script>
+		var ctx =document.getElementById("cvs").getContext("2d");
+		ctx.fillStyle = "#ff0000";
+		ctx.fillRect(15,15,100,100);
+		//
+		ctx.fillStyle = "rgba(0,0,255,0.5)";
+		ctx.fillRect(65,65,100,100);
+		//中间挖掉
+		ctx.clearRect(77,77,25,25)
+	</script>
+	</body>
+</html>

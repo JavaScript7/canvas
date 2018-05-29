@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{ margin: 0; padding: 0;}
+			.content{
+				width: 500px;
+				height: 530px;
+				border: 1px solid black;
+				margin: 20px auto;
+			}
+			.content .img{
+				width: 100%;
+				height: 500px;
+				border-bottom: 1px dashed black;
+			}
+			.controlBox{
+				display: flex;
+				justify-content: space-around;
+				width: 500px;
+				height: 49px;
+			}
+			.upload,.download{
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="img">
+				<canvas id="canvas" width="500" height="500"></canvas>
+			</div>
+		</div>
+		<div class="controlBox">
+			<div class="upload">
+				<input type="file" id="selectPic">
+			</div>
+			<div class="download"></div>
+		</div>
+	</body>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+		var upB = document.getElementById('selectPic');
+		upB.onchange = function(){
+			ctx.clearRect(0,0,500,500);
+			//console.log(this.files[0]);
+			var url = window.URL.createObjectURL(this.files[0]);
+			var img = new Image();//创建新的im元素
+			img.src = url;
+			img.onload = function(){
+				var w = img.naturalWidth;//图片实际宽度
+				var h = img.naturalHeight;
+				if(w>h){
+					var h1 = h/(w/500);
+					ctx.drawImage(img,(500-w)/2,0,500,h1);//5个参数(图片元素,位置左上右下)
+				}else{
+					var w1 = w/(h/500);
+					ctx.drawImage(img,(500-w1)/2,0,w1,500);
+				}				
+			}			
+		}
+		canvas.addEventListener('mousedown',mosaic);
+		canvas.addEventListener('mousemove',mosaic);
+		canvas.addEventListener('mouseup',mosaic);
+		var toggle = false;
+		function mosaic(){
+			var ev = window.event || ev;
+			//console.log(ev);
+			//console.log(ev.type);
+			switch(ev.type){
+				case 'mousedown':
+					toggle = true;
+					drawMosaic(ev.offsetX,ev.offsetY);
+					break;
+				case 'mousemove':
+					if(toggle){
+						drawMosaic(ev.offsetX,ev.offsetY);
+					}				
+					break;
+				case 'mouseup':
+					toggle = false;
+					break;
+			}
+		}
+		function drawMosaic(x,y){
+			var aColor = restore(ctx.getImageData(x-5,y-5,10,10).data,4);
+			var vr=0,vg=0,vb=0;
+			for(var i=0,len=aColor.length;i<len;i++){
+				vr += aColor[i][0];
+				vg += aColor[i][1];
+				vb += aColor[i][2];
+			}
+			//console.log('颜色值:'+vr,vg,vb);
+			ctx.fillStyle = "rgb("
+			+Math.round(vr/aColor.length)+","
+			+Math.round(vg/aColor.length)+","
+			+Math.round(vb/aColor.length)+",0)";
+			ctx.fillRect(x-5,y-5,10,10);
+		}
+		function restore(arr,stepSize){
+			var arrList = [];
+			var index = 0;
+			var number = parseInt(arr.length/stepSize);
+			for(var i=0; i<number;i++){
+				arrList.push(arr.slice(index,stepSize+index));
+				index += stepSize;
+			}
+			return arrList;
+		}
+	</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="400" style="border:solid 1px #CCC;">
+		<script>
+			var can = document.getElementById('canvas');
+			var ctx = can.getContext('2d');
+			var offset = 0;
+			function draw() {
+			    offset++;      
+			    if (offset > 16) {            
+			        offset = 0;      
+			    }
+			    ctx.clearRect(0,0, can.width, can.height);  
+			    ctx.setLineDash([6, 2]);  
+			    ctx.lineDashOffset = -offset;  
+			    ctx.strokeRect(10,10, 100, 100);
+			}
+			setInterval(draw, 20);
+		</script>
+	</body>
+</html>

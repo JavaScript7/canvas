@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<canvas id="cvs" width="400" height="400" style="background-color:#666"></canvas>
+	</body>
+	<script>
+		var ctx =document.getElementById("cvs").getContext("2d");
+		ctx.translate(100,150)
+		var grd = ctx.createRadialGradient(220,0,0,220,0,200)
+		grd.addColorStop(0,"black");
+		grd.addColorStop(0.75,"green");
+		grd.addColorStop(1,"red");
+		ctx.fillStyle = grd;	
+		ctx.fillRect(0,0,200,200);
+		
+		ctx.fill();
+	</script>
+</html>

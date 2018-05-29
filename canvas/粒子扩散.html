@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{ margin: 0; padding: 0;}
+			body{ overflow: hidden; background: black;}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+	</body>
+	<script>
+		var canvas = document.querySelector('canvas');
+		var ctx = canvas.getContext('2d');
+		var colors = ['#69d2e7','#a7dbd8','green','blue','red','yellow','#e0e4cc'];
+		var timer = null;
+		var particles = [];
+		var wW = window.innerWidth;//获取屏幕宽度
+		var wH = window.innerHeight;
+		init();
+		function init(){
+			canvas.width = wW;
+			canvas.height = wH;
+			render();
+		}		
+		function Particle(opt){
+			this.init(opt);
+		}
+		Particle.prototype = {
+			init:function(opt){
+				this.x = opt.x || 0;
+				this.y = opt.y || 0;
+				this.radius = random(2,10);//r
+				this.color = random(colors);
+				this.force = random(2,8);
+				this.theta = random(0,Math.PI*2);
+				this.vx = Math.cos(this.theta) * this.force;
+				this.vy = Math.sin(this.theta) * this.force;
+			},
+			upData:function(){
+				this.x += this.vx;
+				this.y += this.vy;
+				
+				this.vx += Math.cos(this.theta) * .1;//沿着原先角度往外移动
+				this.vy += Math.sin(this.theta) * .1;
+				
+				this.vx *= .92;//摩擦系数
+				this.vy *= .92;
+				this.radius *= .96;//变小
+			},
+			draw:function(ctx){
+				ctx.beginPath();
+				ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+				ctx.fillStyle = this.color;
+				ctx.globalCompositeOperation = 'lighter';//叠加透明色
+				ctx.fill();
+			}
+		}
+		function render(){
+			//ctx.beginPath();
+			ctx.clearRect(0,0,wW,wH);
+			var len = particles.length;
+			for(var i=0; i<len; i++){
+				particles[i].draw(ctx);
+				particles[i].upData();
+			}
+			requestAnimationFrame(render);
+		}
+		canvas.onmousemove = function(e){
+			var eX = e.pageX;
+			var eY = e.pageY;
+			for(var i=0; i<random(1,10); i++){
+				spawn(eX,eY);
+			}
+		}
+		function spawn(eX,eY){
+			var particle = new Particle({x:eX,y:eY});
+			if(particles.length >= 800){
+				particles.shift();//超过800就删除些，为电脑性能考虑
+			}
+			particles.push(particle);			
+		}
+		function random(min,max){
+			if(min.sort){
+				return min[~~(Math.random()*min.length)];
+			}else{
+				return ~~(min + Math.random() * (max - min));//0~4
+			}
+		}
+	</script>
+</html>
+<!--[].forEach.call($$('*'),function(item){ item.style.boxShadow = '0 0 8px #222'})-->
+<!--[].forEach.call($$('*'),function(item){ item.style.border = '1px solid #222'})-->

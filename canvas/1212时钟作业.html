@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="500" height="500"></canvas>
+	</body>
+	<script>
+		var ctx =document.getElementById("cvs").getContext("2d");
+		var r=100;
+		var em=1;
+		var width = 500;
+		var height = 500;
+		//画出盘面
+		function drawBk(){
+			ctx.save();
+			ctx.translate(200,200);
+			ctx.beginPath();
+			ctx.lineWidth = 5*em;
+			ctx.arc(0,0,r,0,2*Math.PI,false);//创建圆
+			ctx.stroke();//用线条画出圆
+			//定义显示的数组
+			var hours = [3,4,5,6,7,8,9,10,11,12,1,2];//定义小时数组，arc的0是三点钟的位置
+			ctx.font = "16px";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "middle";
+			//画时刻
+			//forEach：是加强的for的循环，number是数组里面每个元素对应的变量，i是下标
+			hours.forEach(function(number,i){
+				//盘面12等分
+				var rad = 2*Math.PI/12*i;
+				var x = Math.cos(rad)*(r-30);//上下距中心距离
+				var y = Math.sin(rad)*(r-30);//左右距中心距离
+				ctx.fillText(number,x,y);				
+			})
+			//画点
+			for(var i=0;i<60;i++){
+				var rad = 2*Math.PI/60*i;
+				var x = Math.cos(rad)*(r-15);
+				var y = Math.sin(rad)*(r-15);
+				ctx.beginPath();
+				//整点是实黑点
+				if(i%5==0){
+					ctx.fillStyle = '#000';
+					ctx.arc(x,y,3,0,2*Math.PI,false);
+					ctx.fill();
+				}else{
+					ctx.fillStyle = '#ccc';
+					ctx.arc(x,y,1,0,2*Math.PI,false);
+					ctx.fill();
+				}
+			}					
+		}
+		//这里只需要考虑静态的位置
+		//至于秒针不断移动，通过定时函数不断刷新cvs来实现
+		function drawSecond(second){
+			ctx.fillStyle="aquamarine";
+			var rad = 2*Math.PI/60*second;
+			ctx.rotate(rad);
+			ctx.moveTo(-2,20);
+			ctx.lineTo(2,20);
+			ctx.lineTo(1,-r+15);
+			ctx.lineTo(-1,-r+15);
+			ctx.fill();
+		}
+		//画出分针
+		function drawMinutes(min){
+			ctx.save();
+			var rad = 2*Math.PI/60*min;
+			ctx.beginPath();
+			ctx.fillStyle = "blue"
+			ctx.rotate(rad);
+			ctx.moveTo(0,20);
+			ctx.lineTo(1,20);
+			ctx.lineTo(1,-r+30);
+			ctx.lineTo(-1,-r+30);
+			ctx.fill();
+			ctx.restore();
+		}
+		//画出时针
+		function drawHours(h){
+			ctx.save();
+			var rad = 2*Math.PI/12*h;
+			ctx.fillStyle = "black"
+			ctx.lineWidth = 10;
+			ctx.rotate(rad);
+			ctx.moveTo(0,20);
+			ctx.lineTo(1,20);
+			ctx.lineTo(1,-r+40);
+			ctx.lineTo(-1,-r+40);
+			ctx.fill();
+			ctx.restore();
+		}
+		function draw(){
+			//清除原来的
+			ctx.clearRect(0,0,width,height);
+			//先画出盘面
+			drawBk();
+			var now =new Date();
+			var min = now.getMinutes();
+			var seconds = now.getSeconds();
+			var h = now.getHours();
+			drawHours(h);
+			//画出分针
+			drawMinutes(min);
+			//画出秒针
+			drawSecond(seconds);
+			ctx.restore();
+		}
+		//画出时针
+		//画出分针
+		//画出秒针
+		//统一的函数来调用
+		draw();//先画出来
+		//调用setInterval
+		setInterval(draw,1000);
+	</script>
+</html>

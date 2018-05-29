@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="400" height="400"></canvas>
+	</body>
+	<script>
+		var ctx =document.getElementById("cvs").getContext("2d");
+		ctx.fillStyle = "red";
+		ctx.fillRect(0,0,30,30);
+		ctx.save();
+		//进行位置移动
+		ctx.translate(30,30);
+		ctx.fillStyle = "blue";
+		ctx.fillRect(15,0,30,30);
+		//
+		ctx.restore()
+		ctx.fillStyle = "green";
+		ctx.fillRect(45,0,30,30)
+	</script>
+	</body>
+</html>

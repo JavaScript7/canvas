@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus?">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0px;}
+        body{background:#000; overflow: hidden;}
+        .canvas{ display: block; width: 1000px; height: 620px;margin: 10 auto; background: #000; border: 1px solid red;}
+    </style>
+</head>
+<body>
+  <div class="canvas">
+  	<canvas id="canvas" width="1000" height="1000">当前浏览器不支持canvas,请更换浏览器后再试!</canvas>
+  </div>
+<script>
+    var can = document.getElementById('canvas');
+    var cxt=can.getContext("2d");
+    cxt.strokeStyle="#fff";
+    cxt.beginPath();
+    cxt.arc(500,500,100,0,360,false);
+    cxt.closePath();
+    cxt.stroke();
+    cxt.beginPath();
+    cxt.arc(500,500,20,0,360,false);
+    cxt.closePath();
+    var sunColor=cxt.createRadialGradient(500,500,0,500,500,20);
+    sunColor.addColorStop(0,"#f00");
+    sunColor.addColorStop(1,"#f90");
+    cxt.fillStyle=sunColor;
+    cxt.fill();
+</script>
+</body>
+</html>
+<!--window.onload=function(){
+var canvas=document.getEleentById('canvas'):
+canvas.width=1024:
+canvas.height=768:
+context.moveTo(100,100)
+context.lineTo(700,700)
+context.stroke()
+}-->

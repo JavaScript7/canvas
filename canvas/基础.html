@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500" style="background: green;"></canvas>
+	</body>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var txt = canvas.getContext('2d');
+		/*txt.beginPath();	
+		txt.fillRect(10,10,50,25);//矩形
+		txt.fillStyle = 'green';//填充颜色
+		txt.strokeStyle = 'red';//边框颜色
+		txt.lineWidth = 1;//边框线条大小
+		txt.closePath();*/
+		
+		/*txt.arc(100,100,50,0,2*Math.PI);
+		txt.fillStyle = 'green';//填充颜色
+		txt.stroke();//黑色框
+		txt.closePath();*/
+	</script>
+</html>
+<!--ctx.moveTo(50,50);
+ctx.quadraticCurveTo(a,b,x,y);
+a:值越大，曲线角越往右边偏
+b:值越大，曲线弧度越大
+x:x轴位置
+y:y轴位置
+当a与b相等，起点位置与终点位置等比例时，变成直线
+ctx.moveTo(x,y);//起始坐标
+
+ctx.moveTo(25,180);
+ctx.bezierCurveTo(60,80,150,200,200,70);//参数为（x1，y1，x2，y2，x3，y3）表示贝塞尔曲线不同坐标（三个坐标点）
+
+ctx.moveTo(50,50);
+ctx.arcTo(200,50,200,100,150);//参数（x1,y1，x2，y2，r）x1，y1起点坐标 x2,y2终点坐标 r半径
+ctx.stroke();
+
+ctx.translate(125,125);//平移
+ctx.scale(0.5,0.5);//缩放-->

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<canvas id="cvs" width="400" height="400"></canvas>
+	</body>
+	<script>
+		var ctx =document.getElementById("cvs").getContext("2d");
+		ctx.fillRect(10,10,150,150);
+		ctx.save();
+		//设置颜色为白色
+		ctx.fillStyle = "white";
+		ctx.fillRect(30,30,110,110)
+		ctx.save();
+		//画蓝色
+		ctx.fillStyle = "blue";
+		ctx.fillRect(50,50,70,70);
+		ctx.restore();//取出上一次的状态
+		ctx.restore();
+		//
+		ctx.fillRect(70,70,30,30)
+	</script>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{ margin: 0; padding: 0;}
+			body{ background: orange; transition: transform 0.1s;}
+			#box{ width: 500px; height: 500px; margin: 20px auto;}
+			#box{ transform: rotate(360deg);}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<canvas id="canvas" width="500" height="500" style="background: orange;"></canvas>
+		</div>
+	</body>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+		ctx.beginPath();
+		ctx.arc(250,250,150,0.5*Math.PI,1.5*Math.PI,true);
+		ctx.fillStyle = 'white';
+		ctx.closePath();
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.arc(250,250,150,0.5*Math.PI,1.5*Math.PI,false);
+		ctx.fillStyle = 'black';
+		ctx.closePath();
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.arc(250,175,75,0.5*Math.PI,1.5*Math.PI,false);
+		//ctx.strokeStyle = 'orange';
+		ctx.fillStyle = 'white';
+		ctx.closePath();
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.arc(250,325,75,0.5*Math.PI,1.5*Math.PI,true);
+		ctx.fillStyle = 'black';
+		ctx.closePath();
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.arc(250,185,20,0,2*Math.PI);
+		ctx.fillStyle = 'black';
+		ctx.closePath();
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.arc(250,325,20,0,2*Math.PI);
+		ctx.fillStyle = 'white';
+		ctx.closePath();
+		ctx.fill();
+	</script>
+</html>

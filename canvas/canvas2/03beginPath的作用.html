@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="400" height="400" style="background-color:#666"></canvas>
+	</body>
+	<script>
+		var ctx =document.getElementById("cvs").getContext("2d");
+		for(var i=10;i>=1;i--){
+			ctx.beginPath();
+			ctx.arc(i*25,i*25,i*10,Math.PI*2,false);		
+		 	ctx.fillStyle = "hotpink";
+		 	ctx.fill();
+		}
+	</script>
+</html>

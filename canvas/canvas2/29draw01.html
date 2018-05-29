@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="800" height="500" style="background-color:#666"></canvas>
+	</body>
+	<script>
+		var cvs = document.getElementById("cvs");
+		cvs.width=500;
+		cvs.height = 300
+		var ctx =cvs.getContext("2d");
+		
+		//先创建Image对象
+		var image = new Image();
+		image.src = "01.jpg";
+		//要图片加载完成，才可以放入到画布里面
+		image.onload=function(){
+			//ctx.drawImage(image,0,0);//这种事画布与图片一样大小
+			//图片能够跟着画布的大小走
+			ctx.drawImage(image,0,0,cvs.width,cvs.height)
+		}
+	 </script>
+</html>

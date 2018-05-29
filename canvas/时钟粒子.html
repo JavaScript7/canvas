@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{ margin: 0; padding: 0;}
+			body{
+				background-color: #030037;
+			}
+			#canvas{
+				display: block;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+	</body>
+	<script src="时钟粒子.js"></script>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var cxt = canvas.getContext('2d');
+		var cW = 700;
+		var cH = 100;
+		canvas.width = cW;
+		canvas.height = cH;
+		var R = canvas.height/20 - 1; 	
+		//大小
+		var data = [];//存时间数据
+		var balls = [];//存储小球数据
+		(function(){
+			var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date);
+			data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+		})();	
+		function drawDigit(index,num){
+			for(var i=0; i<digit[num].length; i++){
+				for(var j=0;j<digit[num][i].length;j++){
+					if(digit[num][i][j] == 1){
+						cxt.fillStyle = '#fff';
+						cxt.beginPath();
+						cxt.arc(14*(R+2)*index+j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,2*Math.PI,false)
+						//x,y,r,弧度,false
+						cxt.closePath();
+						cxt.fill();
+					}
+				}
+			}
+		}	
+		function updataTime(){
+			var changeTimeArr = [];//改变时间数据
+			var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date);//检索字符串中的正则表达式的匹配
+			var newTime = [];//当前改变时间数据
+			newTime.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+			for(var i=data.length;i>=0;i--){
+				if(newTime[i] !== data[i]){
+					changeTimeArr.push(i+'_'+(Number(data[i])+1)%10);
+					//console.log((Number(data[i])+1)%10);
+				}
+			};
+			//更新小球
+			for(var i=0;i<changeTimeArr.length;i++){
+				renderBalls.apply(this,changeTimeArr[i].split('_'));
+			}
+			data = newTime.concat();
+		}
+		//更新小球的运动状态
+		function updataBalls(){
+			for(var i=0;i<balls.length;i++){
+				balls[i].stepY += balls[i].disY;
+				balls[i].x += balls[i].stepX;
+				balls[i].y += balls[i].stepY;
+				if(balls[i].x>cW+R || balls[i].y>cH+R){
+					balls.splice(i,1);
+					i--;
+				}
+			}
+		}
+		function renderBalls(index,num){
+			var numArr = [1,2,3];
+			var colorArr = ['red','blue','green','pink','yellow','orange','gray','#056'];
+			for(var i=0; i<digit[num].length; i++){
+				for(var j=0;j<digit[num][i].length;j++){
+					if(digit[num][i][j] == 1){
+						var ball = {
+							x: 14*(R+2)*index+j*2*(R+1)+(R+1),
+							y: i*2*(R+1)+(R+1),
+							stepX: Math.floor(Math.random()*4-2),
+							stepY: 
+							-2*numArr[Math.floor(Math.random()*numArr.length)],
+							color: 
+							colorArr[Math.floor(Math.random()*colorArr.length)],
+							disY: 1
+						};
+						balls.push(ball);
+					}
+				}
+			}
+		}
+		//渲染
+		function render(){
+			//canvas.hieght = cH;//清除画布
+			cxt.clearRect(0,0,cW,cH);
+			//时钟
+			for(var i=0;i<data.length;i++){
+				drawDigit(i,data[i]);
+			}
+			//渲染小球
+			for(var i=0;i<balls.length;i++){
+				cxt.beginPath();
+				cxt.arc(balls[i].x,balls[i].y,R,2*Math.PI,false)//x,y,r,弧度,false
+				cxt.fillStyle = balls[i].color;
+				cxt.closePath();
+				cxt.fill();
+			}
+		}
+		render();
+		clearInterval(timer);
+		var timer = setInterval(function(){
+			updataTime();
+			updataBalls();
+			render();
+		},50);
+	</script>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<canvas id="cvs" width="400" height="400" style="background-color:#666"></canvas>
+	</body>
+	<script>
+		var ctx =document.getElementById("cvs").getContext("2d");
+		//设置字体的样式
+		ctx.font="30px Courier New"
+		ctx.fillStyle = "blue";
+		ctx.fillText("这个是用fill设置的",50,200);
+		ctx.strokeText("这个是用Stroke设置的",50,150)
+	</script>
+</html>

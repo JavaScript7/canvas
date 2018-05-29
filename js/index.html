@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>随机4位验证码</title>
+    <style>
+        #box{ 
+            width: 100px; 
+            height: 50px; 
+            margin: 100px auto; 
+            border: 1px solid red; 
+            border-radius: 10px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+<script>
+    let oBox = document.getElementById('box');
+    let captcha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    function name(n,m){
+        n = Number(n);
+        m = Number(m);
+        if(isNaN(n) || isNaN(m)){
+            return Math.random();
+        }
+        if(n>m){
+            let temp = n;
+            m = temp;
+            n = m;
+        }
+        return Math.floor(Math.random()*(m-n)+n); 
+    } 
+    function getCode(){
+        let str = '';
+        for(let i=0; i<4; i++){
+            let ran = name(0,61);
+            str += captcha.charAt(ran);//charAt()获取索引值
+        }
+        oBox.innerHTML = str;
+    }
+    getCode();
+    oBox.onclick = function(){
+        getCode();
+    }
+</script>
+</html>

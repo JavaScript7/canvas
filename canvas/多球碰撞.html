@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #mycanvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="">
+        <input type="button" id="buttn" value="开始" />
+    </div>
+    <canvas id="mycanvas" width="800" height="600"></canvas>
+</body>
+<script type="text/javascript">
+    var mycanvas = document.querySelector("#mycanvas");
+    var ctx = mycanvas.getContext("2d");
+    //随机函数
+    function rand(a, b) {
+        return parseInt(Math.random() * (b - a) + a + 1);
+    }
+    //构造函数 属性和方法
+    function Circle() {
+        this.radius = rand(0, 50);
+        this.x = rand(this.radius, mycanvas.width - this.radius);
+        this.y = rand(this.radius, mycanvas.height - this.radius);
+        this.strokeStyle = "rgba(" + rand(0, 255) + "," + rand(0, 255) + "," + rand(0, 255) + "," + rand(0, 10) * 0.1 + ")";
+        this.fillStyle = "rgba(" + rand(0, 255) + "," + rand(0, 255) + "," + rand(0, 255) + "," + rand(0, 10) * 0.1 + ")";
+        this.movex = rand(0, 30) * 0.1 > 1 ? -rand(0, 30) * 0.1 : rand(0, 30) * 0.1; //三目运算
+        this.movey = rand(0, 30) * 0.1 < 1 ? -rand(0, 30) * 0.1 : rand(0, 30) * 0.1;
+        this.draw = drawCircle;
+        this.move = move;
+    }
+    // 画圆
+    function drawCircle() {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+        ctx.strokeStyle = this.strokeStyle;
+        ctx.fillStyle = this.fillStyle;
+        //ctx.stroke();
+        ctx.fill();
+        ctx.restore();
+    }
+    //判断反弹
+    function move() {
+        if(this.x + this.movex - this.radius < 0 || this.x + this.movex + this.radius > mycanvas.width) {
+            this.movex = -this.movex;
+        }
+        if(this.y + this.movey - this.radius < 0 || this.y + this.movey + this.radius > mycanvas.height) {
+            this.movey = -this.movey;
+        }
+        this.x += this.movex;
+        this.y += this.movey;
+    }
+    //获取按钮
+    var buttn = document.querySelector("#buttn");
+    var qq = [];
+    //开关
+    var onoff = false;
+    //for循环多个圆
+    for(i = 0; i < rand(10, 80); i++) {
+        Circles = new Circle(); //new一个对象
+        qq.push(Circles);
+    }
+    //绑定事件
+    buttn.onclick = function() {
+            onoff = !onoff;
+            animation();
+        }
+        //canvas动画
+    function animation() {
+        ctx.clearRect(0, 0, 800, 600);
+        for(i = 0; i < qq.length; i++) {
+            qq[i].draw();
+            qq[i].move();
+        }
+        if(onoff) {
+            buttn.value = "开始";
+            window.requestAnimationFrame(animation); //执行动画函数
+        } else {
+            buttn.value = "暂停";
+        }
+    }
+</script>
+</html>

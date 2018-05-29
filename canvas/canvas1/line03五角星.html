@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="500" height="500"></canvas>
+	</body>
+	<script>
+		var ctx = document.getElementById("cvs").getContext("2d");
+		var bgX= 200;//这个是五角星的中心坐标x
+		var bgY= 200;//这个是五角星的中心坐标y
+		var r=50; //五角星里面的小圆半径
+		var R =100;//五角星里面的大圆半径
+		ctx.beginPath()		 
+		for(var i=0;i<5;i++){
+			//五角星的每个顶点=18*对应的Math.XXX
+			var RX = Math.cos((18+i*72)/180*Math.PI)*R+bgX;
+			var RY = -Math.sin((18+i*72)/180*Math.PI)*R+bgY;
+			//五角星的内顶点
+			var rX = Math.cos((54+i*72)/180*Math.PI)*r+bgX;
+			var rY = -Math.sin((54+i*72)/180*Math.PI)*r+bgY;  
+			ctx.lineTo(RX,RY);
+			ctx.lineTo(rX,rY);
+		} 
+		ctx.closePath();
+		ctx.stroke();
+	</script>
+</html>

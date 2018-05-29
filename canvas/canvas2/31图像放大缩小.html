@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				margin:0 auto;
+				display: block;
+				border: 1px #ff0095 solid;
+			}
+			input{
+				margin:20px auto;
+				display: block;
+                width:650px
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="cvs" width="800" height="600"></canvas>
+		<input type="range" id="range" min="0.5" max="3.0" value="1.0" step="0.1"/>
+		<script>
+			var cvs = document.getElementById("cvs");
+			var ctx = cvs.getContext("2d");
+			//滑块对象
+			var slide =document.getElementById("range");
+			var img = new Image();//图片对象			
+			window.onload = function(e){
+				//加载图片的时候，得到初始的scale
+				var scale = slide.value;
+				img.src="01.jpg";
+				img.onload = function(){
+					drawImageByScale(scale);
+					slide.onmousemove =function(){
+						scale = slide.value;
+						drawImageByScale(scale)
+					}
+				}
+			}
+			//根据指定的变动比例来加载图片
+			function drawImageByScale(scale){
+				//在原始的大小基础上进行缩放
+				var orgW=640;
+				var orgH=337;
+				var imgW = orgW*scale;//在原来基础上缩放
+				var imgH = orgH*scale;
+				//将图片的位置设置在canvas的中间
+				var dx=cvs.width/2-imgW/2;
+				var dy = cvs.height/2 - imgH/2;
+				ctx.clearRect(0,0,cvs.width,cvs.height)
+				ctx.drawImage(img,dx,dy,imgW,imgH)
+			}
+		</script>
+	</body>
+</html>

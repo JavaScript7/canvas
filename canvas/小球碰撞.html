@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+	</body>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+		var x,y,r,pX,pY,vx,vy;
+		var colos = ['red','black','yellow','pink','blue'];
+		var balls = [];//存放生成的小球
+		
+		~~function setSize(){
+			window.onresize = arguments.callee();
+			var wW = window.innerWidth;
+			var hH = window.innerHeight;
+			canvas.width = wW;
+			canvas.height = hH;
+		}();
+		
+		function randomf(min,max){//从min到max
+			return Math.random()*(max-min)+min;
+		}
+		
+		window.onmousemove = function(){
+			var ev = window.event;
+			pX = ev.clientX;//鼠标x轴位置
+			pY = ev.clientY;
+		}
+		
+		function moreBalls(){};
+		moreBalls.prototype = {
+			init: function(){
+				this.x = Math.floor(randomf(1,2));
+				this.y = Math.floor(randomf(1,2));
+				this.r = randomf(1,3);
+				this.color = Math.random(colos);
+			},
+			draw: function(){
+				ctx.beginPath();
+				ctx.fillStyle = this.color;
+				ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+				ctx.fill();
+			}/*,
+			move(): function(){
+				this.x += this.vx;
+				this.y += this.vy;
+				if(this.x-this.r<0 || this.x+this.r>wW){
+					this.vx = -this.vx;
+				}
+				if(this.y-this.r<0 || this.y+this.r>hH){
+					this.vy = -this.vy;
+				}
+				if(Math.sqrt(Math.pow(this.x-pX,2)+Math.pow(this.y-pY,2))<this.D&&this.r<20){
+					this.r ++;
+				}else if(Math.sqrt(Math.pow(this.x-pX,2)+Math.pow(this.y-pY,2))>this.D&&this.r>3){
+					this.r --;
+				}
+				this.draw();
+			}*/
+		}
+		function creat(num){
+			for(var i=0; i<num; i++){
+				var bulle = new moreBalls();
+				bulle.init();
+				bulle.draw();
+				balls.push(bulle);
+			}
+		}
+		creat(520);
+		setInterval(function(){
+			ctx.clear(0,0,wW,hH);
+			for(var item of balls){
+				item.move();
+			}
+		},1000/60);//电脑动画一秒60次
+	</script>
+</html>
