@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <login></login>
+    <!-- <login></login> -->
     <!-- <manage></manage>
     <user></user>
     <router-link to="Manages">管理</router-link>
@@ -8,7 +8,8 @@
     <router-view></router-view> -->
     <!-- <echart></echart> -->
     <!-- <tableBox></tableBox><tableBox></tableBox> -->
-    <router-view></router-view>
+    <!-- <router-view></router-view> -->
+    <Contain></Contain>
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import Router from 'vue-router'
 import Vue from 'Vue'
 import Echart from './components/echarts/echart'
 import tableBox from './components/manage/table'
+import Contain from './components/manage/contain'
 
 Vue.use(Router)
 
@@ -30,7 +32,8 @@ export default {
     Manage,
     User,
     Echart,
-    tableBox
+    tableBox,
+    Contain
   },
   mounted () {},
   methods: {}
