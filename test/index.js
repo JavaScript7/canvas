@@ -11,8 +11,8 @@ const feedback = {
 }
 console.log(feedback[400]);//请求参数错误
 //集合变数组Array.of()
-console.log(Array.of(1,2,3,4));//[ 1, 2, 3, 4 ]
-console.log(Array.of('j','k','l'));
+//console.log(Array.of(1,2,3,4));//[ 1, 2, 3, 4 ]
+//console.log(Array.of('j','k','l'));
 //key和value一样时，写一个
 let name = '张三';
 let age = 12;
@@ -24,7 +24,7 @@ let obj = {
     name,
     age
 }
-console.log(obj);//{ name: '张三', age: 12 }
+//console.log(obj);//{ name: '张三', age: 12 }
 //多个对象合并一个对象
 {
     let obj = {};
@@ -32,13 +32,13 @@ console.log(obj);//{ name: '张三', age: 12 }
     let obj2 = {age:22};
     let obj3 = {sex:'男'};
     Object.assign(obj,obj1,obj2,obj3);
-    console.log(obj);//{ name: '张三', age: 22, sex: '男' }
+    //console.log(obj);//{ name: '张三', age: 22, sex: '男' }
 }
 //字符串拆成数组
 {
     let str = "加防腐剂啊快来发";
     let strArr = [...str];
-    console.log(strArr);//[ '加', '防', '腐', '剂', '啊', '快', '来', '发' ]
+    //console.log(strArr);//[ '加', '防', '腐', '剂', '啊', '快', '来', '发' ]
 }
 //默认参数
 {
@@ -89,6 +89,7 @@ console.log(obj);//{ name: '张三', age: 12 }
 // }
 //三角形
 {
+<<<<<<< HEAD
     // for(var i=0; i<6; i++){
     //     for(var j=0; j<5-i; j++){
     //         console.log(' ');
@@ -203,4 +204,24 @@ console.log(obj);//{ name: '张三', age: 12 }
     let datar = 'qwertyuiopasd';
     //console.log(datar.slice(0,-4));//qwertyuio 从0开始选取到-4（负数表示从后面开始算，例如最后一个是-1）结束
     //console.log(dataRange);//2
+=======
+    function demo(){
+        setTimeout(function(){
+            //console.log(this);//window
+        },1000)
+        setTimeout(()=>{
+            //console.log(this);//obj
+        },1000)
+    }
+    let obj = {};
+    demo.call(obj);
+}
+{
+    let date = '2018-01-23T16';
+    console.log(date.slice(0,10))
+}
+{
+    let startDate = this.param.dateRange.length == 2 ? `&startDate=${convertDate(new Date(this.param.dateRange[0]).getTime())}` : '';
+    let endDate = this.param.dateRange.length == 2 ? `&endDate=${convertDate(new Date(this.param.dateRange[1]).getTime())}` : '';
+>>>>>>> dev
 }
