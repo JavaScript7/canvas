@@ -10,6 +10,7 @@
     <!-- <tableBox></tableBox><tableBox></tableBox> -->
     <!-- <router-view></router-view> -->
     <Contain></Contain>
+    <I18n></I18n>
   </div>
 </template>
 
@@ -22,6 +23,7 @@ import Vue from 'Vue'
 import Echart from './components/echarts/echart'
 import tableBox from './components/manage/table'
 import Contain from './components/manage/contain'
+import I18n from './components/i18n/i18n'
 
 Vue.use(Router)
 
@@ -33,7 +35,8 @@ export default {
     User,
     Echart,
     tableBox,
-    Contain
+    Contain,
+    I18n
   },
   mounted () {},
   methods: {}

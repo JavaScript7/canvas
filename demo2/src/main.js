@@ -10,12 +10,14 @@ import User from './components/manage/user.vue'
 import Manage from './components/manage/manage.vue'
 import echarts from 'echarts'
 import axios from 'axios'
+import VueI18n from 'vue-i18n'
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.use(Router)
 // Vue.prototype.$echarts = echarts
 Vue.use(echarts)
+Vue.use(VueI18n)
 Vue.prototype.axios = axios
 
 // 设置路由
@@ -27,11 +29,21 @@ const router = new Router({
     {path: '/manage', componentd: Manage}
   ]
 })
+// 中英文转换
+const i18n = new VueI18n({
+  locale: 'zh',
+  messages: {
+    'en': require('./components/i18n/English'),
+    'zh': require('./components/i18n/Chinese')
+  }
+})
+export default i18n
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  i18n,
   components: { App },
   template: '<App/>',
   render: h => h(App)
